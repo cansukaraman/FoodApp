@@ -1,0 +1,15 @@
+.detail-context{
+    width: auto;
+    display: contents;
+    position: absolute;
+}
+
+.card-context{
+    width: 39%;
+    margin-left: 20px;
+    margin-right: 30px;
+}
+.comment-context{
+    width: 39%;
+    margin-left: 20px;
+}
