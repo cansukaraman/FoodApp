@@ -1,25 +1,22 @@
 import React, { Component } from 'react'
-import { Card, CardImg, CardText, CardBody, CardTitle } from 'reactstrap';
+import { Link } from 'react-router-dom';
+import { Card, CardImg, CardText, CardBody, CardTitle, Breadcrumb, BreadcrumbItem } from 'reactstrap';
 import { List } from 'reactstrap';
 import moment from 'moment'
 import '../assets/components.css'
 
-export class DishdetailComponent extends Component {
+export class Dishdetail extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            dish: null
+            dish: this.props.dish,
+            comments: this.props.comments
         }
-    }
-
-    componentWillReceiveProps(nextProps) {
-        if (this.props !== nextProps) {
-            this.setState({ dish: nextProps.selectedDish });
-        }
+        console.log(this.state.dish)
     }
 
     renderComments(comments) {
-        console.log(comments)
+        console.log("comments",comments)
         return comments.map((comment) => {
             return (
                 <List key={comment.id} type="unstyled">
@@ -33,24 +30,38 @@ export class DishdetailComponent extends Component {
     }
     render() {
         const dish = this.state.dish
+        const comments = this.state.comments
         return (
-            <div className="detail-context">
-                {dish &&
-                    <Card className="card-context">
-                        <CardImg top src={dish.image} alt={dish.name} />
-                        <CardBody>
-                            <CardTitle>{dish.name}</CardTitle>
-                            <CardText>{dish.description}</CardText>
-                        </CardBody>
-                    </Card>}
-                <div className="comment-context">     
-                    {dish && <h4>Comments</h4>}               
-                    {dish != null ?
-                        this.renderComments(dish.comments) : <div></div>}
+            <div className="container">
+                <div className="row">
+                    <Breadcrumb>
+                        <BreadcrumbItem><Link to="/menu">Menu</Link></BreadcrumbItem>
+                        <BreadcrumbItem active>{this.props.dish.name}</BreadcrumbItem>
+                    </Breadcrumb>
+                    <div className="col-12">
+                        <h3>{this.props.dish.name}</h3>
+                        <hr />
+                    </div>
                 </div>
+                <div className="row">
+                    {dish &&
+                        <Card className="card-context">
+                            <CardImg top src={dish.image} alt={dish.name} />
+                            <CardBody>
+                                <CardTitle>{dish.name}</CardTitle>
+                                <CardText>{dish.description}</CardText>
+                            </CardBody>
+                        </Card>}
+                    <div className="comment-context">
+                        {dish && <h4>Comments</h4>}
+                        {dish && comments ?
+                            this.renderComments(comments) : <div></div>}
+                    </div>
+                </div>
+
             </div>
         )
     }
 }
 
-export default DishdetailComponent
+export default Dishdetail

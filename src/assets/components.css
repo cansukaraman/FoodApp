@@ -13,3 +13,13 @@
     width: 39%;
     margin-left: 20px;
 }
+
+.media-image-container{
+    height: 110px;
+    padding: 0 10px;
+    width: 140px;
+}
+
+.text-element{
+    margin:0!important;
+}
