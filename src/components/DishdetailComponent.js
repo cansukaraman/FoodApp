@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Card, CardImg, CardText, CardBody, CardTitle, Breadcrumb, BreadcrumbItem } from 'reactstrap';
 import { List } from 'reactstrap';
 import moment from 'moment'
+import CommentForm from './details/CommentForm'
 import '../assets/components.css'
 
 export class Dishdetail extends Component {
@@ -12,11 +13,9 @@ export class Dishdetail extends Component {
             dish: this.props.dish,
             comments: this.props.comments
         }
-        console.log(this.state.dish)
     }
 
     renderComments(comments) {
-        console.log("comments",comments)
         return comments.map((comment) => {
             return (
                 <List key={comment.id} type="unstyled">
@@ -56,6 +55,7 @@ export class Dishdetail extends Component {
                         {dish && <h4>Comments</h4>}
                         {dish && comments ?
                             this.renderComments(comments) : <div></div>}
+                        <CommentForm />
                     </div>
                 </div>
 
