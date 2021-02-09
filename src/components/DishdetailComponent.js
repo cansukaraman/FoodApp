@@ -55,7 +55,7 @@ export class Dishdetail extends Component {
                         {dish && <h4>Comments</h4>}
                         {dish && comments ?
                             this.renderComments(comments) : <div></div>}
-                        <CommentForm />
+                        <CommentForm  dishId={this.props.dish.id} addComment={this.props.addComment}/>
                     </div>
                 </div>
 
