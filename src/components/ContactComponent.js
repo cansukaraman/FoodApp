@@ -25,7 +25,7 @@ class Contact extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
 
     }
-
+    
     handleSubmit(event) {
         console.log('Current State is: ' + JSON.stringify(this.state));
         alert('Current State is: ' + JSON.stringify(this.state));
