@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import {
     Button, Modal, ModalHeader, ModalBody, Label, Col, Row
 } from 'reactstrap';
-import { Control, LocalForm, Errors } from 'react-redux-form';
+import { Control, Form, Errors,actions } from 'react-redux-form';
 
 export class CommentForm extends Component {
     constructor(props) {
@@ -25,9 +25,10 @@ export class CommentForm extends Component {
         });
     }
     
-    handleSubmit(event) {
+    handleSubmit(values) {
         console.log('Current State is: ' + JSON.stringify(this.state));
-        this.props.addComment(this.props.dishId, values.rating, values.author, values.comment);
+        // this.props.addComment(this.props.dishId, values.rating, values.author, values.comment);
+        this.props.resetFeedbackForm();
     }
 
     render() {
@@ -37,7 +38,7 @@ export class CommentForm extends Component {
                 <Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal}>
                     <ModalHeader toggle={this.toggleModal}>Submit Comment</ModalHeader>
                     <ModalBody>
-                        <LocalForm onSubmit={(values) => this.handleSubmit(values)}>
+                        <Form model="feedback" onSubmit={(values) => this.handleSubmit(values)}>
                             <Row className="form-group">
                                 <Label htmlFor="rating" md={3}>Rating</Label>
                                 <Col md={{ size: 3}}>
@@ -87,7 +88,7 @@ export class CommentForm extends Component {
                                     </Button>
                                 </Col>
                             </Row>
-                        </LocalForm>
+                        </Form>
                     </ModalBody>
                 </Modal>
             </div>

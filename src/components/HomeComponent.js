@@ -3,8 +3,9 @@ import { Card, CardImg, CardText, CardBody,
     CardTitle, CardSubtitle} from 'reactstrap';
 
 function RenderCard({item}) {
-
+    debugger;
     return(
+        item ? 
         <Card>
             <CardImg src={item.image} alt={item.name} />
             <CardBody>
@@ -12,7 +13,7 @@ function RenderCard({item}) {
             {item.designation ? <CardSubtitle>{item.designation}</CardSubtitle> : null }
             <CardText>{item.description}</CardText>
             </CardBody>
-        </Card>
+        </Card> : ""
     );
 
 }
